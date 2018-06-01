@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Mes appareils</h2>
+        <!-- async pipe in angular handle [object Promise], otherwise whidout anync pipe app don't affich noting -->
+        <p>Mis à jour : {{ lastUpdate | async |date: 'short' }}</p>
+        <p>Mis à jour : {{ lastUpdate | async |date: 'y MMMM EEE d' }}</p>
+        <p>Mis à jour : {{ lastUpdate | async |date: 'y MMMM EEEE d' }}</p>
+        <p style="color: blue" >Mis à jour : {{ lastUpdate | async | date: 'y MMMM EEEE d' | uppercase }}</p>
+        <!-- async pipe in angular handle [object Promise], otherwise whidout anync pipe app don't affich noting -->
+        <ul class="list-group">
+          <app-appareil  *ngFor="let appareil of appareils; let i = index"
+                        [appareilName]="appareil.name"
+                        [appareilStatus]="appareil.status"
+                        [index]="i"
+                        [id]="appareil.id"></app-appareil>
+        </ul>
+        <button class="btn btn-success"
+                [disabled]="!isAuth"
+                (click)="onAllumer()">Tout allumer</button>
+        <button class="btn btn-success"
+                [disabled]="!isAuth"
+                (click)="onEteindre()">Tout eteindre</button>
+        <button class="btn btn-priamry"
+                (click)="onSave()">Enregistrer les appareils</button>
+        <button class="btn btn-primary"
+                (click)="onFetch()">Récuperer les appareils</button>
+      </div>
+    </div>
+  </div>
