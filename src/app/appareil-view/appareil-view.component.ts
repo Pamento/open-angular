@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class AppareilViewComponent implements OnInit {
   isAuth = false;
-  appareils: any[];
+  appareils: any[] = [];
   appareilsSubscription: Subscription;
 
   lastUpdate = new Promise((resolve, reject) => {
@@ -32,11 +32,15 @@ export class AppareilViewComponent implements OnInit {
  * if I have good understud, this method make the data from service accesible in realtime everywher in appliacation
 */
   ngOnInit() {
+    console.log('appareil-view he say : ' +this.appareils);
     this.appareilsSubscription = this.appareilService.appareilsSubject.subscribe(
       (appareils: any[]) => {
         this.appareils = appareils;
+
+    console.log('appareil-view he say : ' +this.appareils);
       }
     );
+    
   }
   onAllumer(){
     this.appareilService.switchOnAll();
@@ -59,7 +63,13 @@ export class AppareilViewComponent implements OnInit {
    * on enregistre les données sur les appareils dans la base de données Firebase
    */
   onSave(){
+    // to debloque after debug
     this.appareilService.seveAppareilToServer();
+    if(this.appareils === undefined){
+    console.log(this.appareils);
+    } else {
+      console.log( this.appareils[0]);
+    }
   }
   /**
    * on récuper les données de la bd Firebase

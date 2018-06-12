@@ -15,7 +15,10 @@ export class AppareilService {
   constructor( private httpClient: HttpClient ) { }
 
   emitAppareilSubject() {
-    this.appareilsSubject.next(this.appareils.slice(1,10));
+    console.log(JSON.stringify(this.appareils));
+    this.appareilsSubject.next(this.appareils.slice());
+    console.log('emit service');
+    console.log( 'slice array ', this.appareils.slice());
   }
   switchOnAll() {
     for(let appareil of this.appareils) {
@@ -54,11 +57,18 @@ export class AppareilService {
       name: '',
       status: ''
     };
+
+    if(this.appareils.length === 0 ){
+      appareilObject.id = 0;
+    } else {
+      appareilObject.id = this.appareils[this.appareils.length - 1].id + 1;
+    }
+
     appareilObject.name = name;
     appareilObject.status = status;
-    appareilObject.id = this.appareils[(this.appareils.length - 1)].id + 1;
     this.appareils.push(appareilObject);
     this.emitAppareilSubject();
+    console.log('appareil is added; AppareilService lign 70'+JSON.stringify(this.appareils));
   }
   /**
    * firebase by google start here
@@ -85,7 +95,7 @@ export class AppareilService {
     .put('https://my-firebase-demo-d2440.firebaseio.com/appareils.json', this.appareils )
     .subscribe(
       () => {
-        console.log('Enregistrement terminé !');
+        console.log('Enregistrement terminé !'+typeof(this.appareils)+' --> '+JSON.stringify(this.appareils[0]));
       },
       (error) => {
         console.log('Error ! : '+error);
@@ -107,6 +117,7 @@ export class AppareilService {
       (response) => {
         this.appareils = response;
         this.emitAppareilSubject();
+        console.log('J\'appel les appareils de firebase !'+typeof(this.appareils)+' --> '+JSON.stringify(this.appareils));
       },
       (error) => {
         console.log('Error ! : '+error);

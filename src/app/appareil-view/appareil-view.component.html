@@ -9,6 +9,7 @@
         <p>Mis à jour : {{ lastUpdate | async |date: 'y MMMM EEEE d' }}</p>
         <p style="color: blue" >Mis à jour : {{ lastUpdate | async | date: 'y MMMM EEEE d' | uppercase }}</p>
         <!-- async pipe in angular handle [object Promise], otherwise whidout anync pipe app don't affich noting -->
+        <p *ngIf="appareils === undefined">You don't have nothing in the array</p>
         <ul class="list-group">
           <app-appareil  *ngFor="let appareil of appareils; let i = index"
                         [appareilName]="appareil.name"
@@ -23,7 +24,7 @@
                 [disabled]="!isAuth"
                 (click)="onEteindre()">Tout eteindre</button>
         <button class="btn btn-priamry"
-                (click)="onSave()">Enregistrer les appareils</button>
+                (click)="onSave()" *ngIf="appareils !== undefined">Enregistrer les appareils</button>
         <button class="btn btn-primary"
                 (click)="onFetch()">Récuperer les appareils</button>
       </div>

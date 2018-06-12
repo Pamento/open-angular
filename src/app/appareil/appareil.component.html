@@ -5,7 +5,7 @@
       *ngIf="appareilStatus === 'éteint'"></div>
   <div style="width:20px;height:20px;background-color:green;"
       *ngIf="appareilStatus === 'allumé'"></div>
-      
+
   <h4 [ngStyle]="{color:getColor()}" >Appareil : {{ appareilName }} -- Status : {{ getStatus() }}</h4>
   <a [routerLink]="[id]">Détail</a>
   <input type="text" class="form-control" [(ngModel)]="appareilName">
