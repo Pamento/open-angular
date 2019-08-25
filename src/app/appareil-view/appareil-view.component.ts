@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppareilService } from '../service/appareil.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appareil-view',
@@ -32,12 +32,12 @@ export class AppareilViewComponent implements OnInit {
  * if I have good understud, this method make the data from service accesible in realtime everywher in appliacation
 */
   ngOnInit() {
-    console.log('appareil-view he say : ' +this.appareils);
+    console.log('ngOnInit__appareil-view before subscribe : ' +this.appareils);
     this.appareilsSubscription = this.appareilService.appareilsSubject.subscribe(
       (appareils: any[]) => {
         this.appareils = appareils;
 
-    console.log('appareil-view he say : ' +this.appareils);
+    console.log('ngOnInit__appareil-view after subscirbe : ' +this.appareils);
       }
     );
     

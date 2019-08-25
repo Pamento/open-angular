@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 
 @Injectable()
@@ -8,11 +8,13 @@ export class AppareilService {
  * the subscription function() work for transfer(emit) the data from service to diferent components
  * if I have good understud, this method make the data from service accesible in realtime everywhere in appliacation
 */
-  appareilsSubject = new Subject<any[]>();
+  appareilsSubject = new BehaviorSubject<any[]>([]);
 
   private appareils = [];
 
-  constructor( private httpClient: HttpClient ) { }
+  constructor( private httpClient: HttpClient ) {
+    console.log('construct service appareil');
+   }
 
   emitAppareilSubject() {
     console.log(JSON.stringify(this.appareils));

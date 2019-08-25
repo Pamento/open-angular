@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppareilService } from '../service/appareil.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appareil',

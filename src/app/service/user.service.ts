@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class UserService {

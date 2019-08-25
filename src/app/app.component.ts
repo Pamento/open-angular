@@ -2,9 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Resolve } from '@angular/router';// if this one not work thatone below can be good
 // import { resolve } from 'dns';
 import { reject } from 'q';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval'
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(){  }
 
   ngOnInit(): void {
-    const counter = Observable.interval(1000);
+    const counter = interval(1000);
     this.counterSubscription = counter.subscribe(
       (value) => {
         this.secondes = value;

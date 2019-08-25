@@ -1,9 +1,9 @@
 <li [ngClass]="{'list-group-item':true,
                 'list-group-item-success': appareilStatus === 'allumé',
                 'list-group-item-danger': appareilStatus === 'éteint'}">
-  <div style="width:20px;height:20px;background-color:red;"
+  <div style="width:20px;height:20px;background-color:red;border-radius:50%;"
       *ngIf="appareilStatus === 'éteint'"></div>
-  <div style="width:20px;height:20px;background-color:green;"
+  <div style="width:20px;height:20px;background-color:green;border-radius:50%;box-shadow: 0px 0px 10px #00ff00;"
       *ngIf="appareilStatus === 'allumé'"></div>
 
   <h4 [ngStyle]="{color:getColor()}" >Appareil : {{ appareilName }} -- Status : {{ getStatus() }}</h4>
